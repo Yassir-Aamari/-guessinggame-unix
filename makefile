@@ -1,24 +1,6 @@
-# Define variables
-SHELL := /bin/bash
-SCRIPT_NAME := guessinggame.sh
-README := README.md
+# Makefile to generate README.md and build the project
 
-# Get the number of lines in the script
-LINES := $(shell wc -l < $(SCRIPT_NAME))
-
-# Default target
-all: $(README)
-
-# Rule to generate README.md
-$(README):
-	echo "# Guessing Game" > $(README)
-	echo "Date and Time: $(shell date)" >> $(README)
-	echo "Number of lines in $(SCRIPT_NAME): $(LINES)" >> $(README)
-	echo "" >> $(README)
-	echo "## Instructions" >> $(README)
-	echo "1. Run the script using: bash $(SCRIPT_NAME)" >> $(README)
-	echo "2. Guess the number of files in the current directory." >> $(README)
-
-# Clean rule (optional)
-clean:
-	rm -f $(README)
+README.md: guessinggame.sh
+	@echo "# Guessing Game" > README.md
+	@echo "Date and time: $(shell date)" >> README.md
+	@echo "Number of lines of code in guessinggame.sh: $(shell wc -l < guessinggame.sh)" >> README.md
